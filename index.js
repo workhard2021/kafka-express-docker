@@ -1,22 +1,21 @@
 
 const express= require('express');
 const bodyParser = require('body-parser');
-const { OrderProcess } = require('./order-process');
+const { Process } = require('./process');
 app= new express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 app.post('/order',async(req,res)=>{
     try{
         //order json exemple  : { "id": "1", "product": "flex-code", "quantity": 1 } 
-        const order= req.body;
+        const body= req.body;
         //producer
-        let orders=[order];
+        let data=[body];
         for(let i=0;i<100;i++){
-          orders=[...orders,{...order,id:i,product: order.product+'-'+order.id}];
+          data=[...data,{...body,id:i,product: body.product+'-'+body.id}];
         }
-        await OrderProcess.getInstance().OrderProducer(orders);
+        await Process.getInstance().runProducer(data);
         return res.status(200).json({succes: 'sucess'})
     }catch(error){
        return res.status(500).json({error: error.message})

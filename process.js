@@ -1,9 +1,9 @@
 const { Kafka } = require('kafkajs');
 
-class OrderProcess{
-    brokers=['localhost:9092'];
-    consumer = null;
-    producer = null;
+class Process{
+     brokers=['localhost:9092'];
+     consumer = null;
+     producer = null;
 
     constructor(clientIdProducer='order-service',clientIdConsumer='processing-service'){
        this.clientIdProducer= clientIdProducer;
@@ -29,10 +29,10 @@ class OrderProcess{
     }
 
     static getInstance(){
-       return new OrderProcess();
+       return new Process();
     }
 
-    OrderProducer = async (order) => {
+    runProducer = async (order) => {
         await this.producer.connect();
         try {
             if(Array.isArray(order)){
@@ -61,7 +61,7 @@ class OrderProcess{
         }
     }
 
-    OrderConsumer = async () => {
+    runConsumer = async () => {
         try{
             await this.consumer.connect();
             await this.consumer.subscribe({ topic: 'orders', fromBeginning: true });
@@ -80,5 +80,5 @@ class OrderProcess{
 }
 
 module.exports={
-   OrderProcess:OrderProcess,
+   Process: Process,
 }

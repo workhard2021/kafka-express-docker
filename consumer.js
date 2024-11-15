@@ -1,3 +1,3 @@
-const { OrderProcess } = require("./order-process");
+const { Process } = require("./process");
 
-OrderProcess.getInstance().OrderConsumer();
+Process.getInstance().runConsumer();
