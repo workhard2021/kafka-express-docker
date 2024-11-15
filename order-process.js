@@ -70,7 +70,7 @@ class OrderProcess{
               eachMessage: async ({ topic, partition, message }) => {
                 const order = JSON.parse(message.value.toString());
                 console.log('Commande reçue pour traitement:', order);
-                console.log(`Traitement de la commande ${order.id} pour ${order.product}`);
+                console.log(`Traitement de la commande ${order.id} pour : ${JSON.stringify(order)}`);
              },
             });
         }catch(error){
