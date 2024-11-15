@@ -19,7 +19,6 @@ Clonez le repository contenant le projet sur votre machine locale :
 git clone <URL_DE_VOTRE_REPOSITORY>
 cd <NOM_DU_REPERTOIRE>
 
-```bash
 npm install
 npm run start
 npm run consumer
