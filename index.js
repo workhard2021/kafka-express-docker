@@ -13,7 +13,7 @@ app.post('/order',async(req,res)=>{
         //producer
         let data=[body];
         for(let i=0;i<100;i++){
-          data=[...data,{...body,id:i,product: body.product+'-'+body.id}];
+          data=[...data,{...body,count:i+1}];
         }
         await Process.getInstance().runProducer(data);
         return res.status(200).json({succes: 'sucess'})
