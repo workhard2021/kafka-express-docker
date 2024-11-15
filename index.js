@@ -6,8 +6,6 @@ app= new express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//consumer
-OrderProcess.getInstance().OrderConsumer();
 
 app.post('/order',async(req,res)=>{
     try{
